@@ -1,0 +1,24 @@
+{% extends '_layout.html' %}
+
+{% block body %}
+<h1 class="mt-4">Search Users</h1>
+
+<!-- Search form -->
+<form action="/search_users" method="GET">
+    <div class="mb-3">
+        <label for="search_query" class="form-label">Search Users:</label>
+        <input type="text" class="form-control" id="search_query" name="q" placeholder="Enter username">
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+<!-- Display search results -->
+{% if search_results %}
+    <h2>Search Results:</h2>
+    <ul>
+        {% for user in search_results %}
+            <li><a href="/messages/{{ user.user_id }}">{{ user.username }}</a></li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}
